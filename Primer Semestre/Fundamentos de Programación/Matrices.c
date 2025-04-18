@@ -27,6 +27,9 @@ bool ValidarInputMain(char);
 //Suma y Resta de Matrices 
 void Suma(int);
 
+//Imprimir Todas las matrices
+void ImprimirMatrices(int);
+
 
 //declaracion variables
 int i;
@@ -179,6 +182,7 @@ void Suma(int Numero)
         }
      
     } 
+    ImprimirMatrices(Numero);
 
 }
 bool ValidarInputMain(char input)
@@ -191,4 +195,143 @@ bool ValidarInputMain(char input)
     {
         return false;
     }
+}
+
+void ImprimirMatrices(int Numero)
+{
+    printf("Matrices:\n");
+    printf("     C               A               B\n");
+    char operacion = '-';
+    int k, l;
+    if (Numero == 1)
+    {
+        operacion = '+';
+    }
+    
+
+
+    //Fila
+    for (i = 0; i <= 2; ++i)
+    {
+        int NumerosMatriz[9];
+        int numerodematiz = 0;
+        //Matriz
+        for (j = 0; j <= 2; ++j)
+        {
+            //Columna
+            for (k = 0; k <= 2; ++k)
+            {
+                switch (j)
+                {
+                case 0:
+                    //Datos Matriz C
+                    NumerosMatriz[numerodematiz] = MatrizC[i][k];
+                    numerodematiz++;
+                    break;
+                
+                case 1:
+                    //Datos Matriz A
+                    NumerosMatriz[numerodematiz] = MatrizA[i][k];
+                    numerodematiz++;
+                    break;    
+                
+                case 2:
+                    //Datos Matriz B
+                    NumerosMatriz[numerodematiz] = MatrizB[i][k];
+                    numerodematiz++;
+                    break;    
+                }                
+                
+            }
+        }
+
+        for (l = 0; l <=8; ++l)
+        {
+            if (l == 2 || l == 5)
+            {
+                if (i != 1)
+                {
+                    if (NumerosMatriz[l] >=0)
+                    {
+                        printf(" %d      ", NumerosMatriz[l]);
+                    }
+                    else
+                    {
+                        printf("%d      ", NumerosMatriz[l]);
+                    }
+                                       
+                }
+                else
+                {
+                    if (l == 2)
+                    {
+                        
+                        if (NumerosMatriz[l] >=0)
+                        {
+                            printf(" %d  =   ", NumerosMatriz[l]);
+                        }
+                        else
+                        {
+                            printf("%d  =   ", NumerosMatriz[l]);
+                        }
+                        
+
+
+
+                        
+                    }
+                    else
+                    {
+
+
+                        if (NumerosMatriz[l] >=0)
+                        {
+
+
+                            printf(" %d  %c   ", NumerosMatriz[l], operacion);
+
+                        }
+                        else
+                        {
+                            printf("%d  %c   ", NumerosMatriz[l], operacion);
+                        }
+
+
+
+                        
+                    }
+                    
+                }
+                
+                
+            }
+            else
+            {
+
+
+                
+                if (NumerosMatriz[l] >=0)
+                {
+
+
+                    printf(" %d  ", NumerosMatriz[l]);
+
+                }
+                else
+                {
+                    printf("%d  ", NumerosMatriz[l]);
+                }
+
+
+                
+            }
+            
+        }
+        printf("\n");
+
+        
+        
+
+    }
+    
 }
