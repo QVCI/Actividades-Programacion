@@ -27,6 +27,9 @@ bool ValidarInputMain(char);
 //Suma y Resta de Matrices 
 void Suma(int);
 
+//Multiplicacion de Matrices
+void MultiplicarMatrices();
+
 //Imprimir Todas las matrices
 void ImprimirMatrices(int);
 
@@ -165,6 +168,13 @@ void MenuPrincipal()
             Esperar();
             break;
 
+            case '5':
+            //Multiplicacion matrices
+            LimpiarPantalla();
+            MultiplicarMatrices(); //Neutro Aditivo
+            Esperar();
+            break;
+
         }
             
        
@@ -200,13 +210,23 @@ bool ValidarInputMain(char input)
 void ImprimirMatrices(int Numero)
 {
     printf("Matrices:\n");
-    printf("     C               A               B\n");
+    printf("       C                  A                  B\n");
     char operacion = '-';
     int k, l;
     if (Numero == 1)
     {
         operacion = '+';
     }
+    if (Numero == -1)
+    {
+        operacion = '-';
+    }
+    if (Numero == 0)
+    {
+        operacion = '*';
+    }
+   
+    
     
 
 
@@ -253,12 +273,33 @@ void ImprimirMatrices(int Numero)
                 {
                     if (NumerosMatriz[l] >=0)
                     {
-                        printf(" %d      ", NumerosMatriz[l]);
+                        if (NumerosMatriz[l] >= 10)
+                        {
+                            printf(" %d      ", NumerosMatriz[l]);
+                        }
+                        else
+                        {
+                            printf("  %d      ", NumerosMatriz[l]);
+                        }
+                        
+                        
                     }
                     else
                     {
-                        printf("%d      ", NumerosMatriz[l]);
+
+
+                        if (NumerosMatriz[l] <= 10)
+                        {
+                            printf(" %d      ", NumerosMatriz[l]);
+                        }
+                        else
+                        {
+                            printf("    %d      ", NumerosMatriz[l]);
+                        }
+
+                        
                     }
+
                                        
                 }
                 else
@@ -268,11 +309,26 @@ void ImprimirMatrices(int Numero)
                         
                         if (NumerosMatriz[l] >=0)
                         {
-                            printf(" %d  =   ", NumerosMatriz[l]);
+                            if (NumerosMatriz[l] >= 10)
+                            {
+                                printf(" %d  =   ", NumerosMatriz[l]);
+                            }
+                            else
+                            {
+                                printf("  %d  =   ", NumerosMatriz[l]);
+                            }
+                            
                         }
                         else
                         {
-                            printf("%d  =   ", NumerosMatriz[l]);
+                            if(NumerosMatriz[l] <= 10)
+                            {
+                                printf("%d  =   ", NumerosMatriz[l]);
+                            }
+                            else
+                            {
+                                printf("   %d  =   ", NumerosMatriz[l]);
+                            }
                         }
                         
 
@@ -286,14 +342,29 @@ void ImprimirMatrices(int Numero)
 
                         if (NumerosMatriz[l] >=0)
                         {
+                            if(NumerosMatriz[l] >= 10)
+                            {
+                                printf(" %d  %c   ", NumerosMatriz[l], operacion);
+                            }
+                            else
+                            {
+                                printf("  %d  %c   ", NumerosMatriz[l], operacion);
+                            }   
 
-
-                            printf(" %d  %c   ", NumerosMatriz[l], operacion);
+                    
 
                         }
                         else
                         {
-                            printf("%d  %c   ", NumerosMatriz[l], operacion);
+                            if (NumerosMatriz[l] <= 10)
+                            {
+                                printf("%d  %c   ", NumerosMatriz[l], operacion);
+                            }
+                            else
+                            {
+                                printf("   %d  %c   ", NumerosMatriz[l], operacion);
+                            }
+
                         }
 
 
@@ -312,14 +383,30 @@ void ImprimirMatrices(int Numero)
                 
                 if (NumerosMatriz[l] >=0)
                 {
+                    if (NumerosMatriz[l] >= 10)
+                    {
+                        printf(" %d  ", NumerosMatriz[l]);
+                    }
+                    else
+                    {
+                        printf("  %d  ", NumerosMatriz[l]);
+                    }
+                  
 
-
-                    printf(" %d  ", NumerosMatriz[l]);
+        
 
                 }
                 else
                 {
-                    printf("%d  ", NumerosMatriz[l]);
+                    if (NumerosMatriz[l] <= 10)
+                    {
+                        printf("%d  ", NumerosMatriz[l]);
+                    }
+                    else
+                    {
+                        printf("    %d  ", NumerosMatriz[l]);
+                    }   
+               
                 }
 
 
@@ -335,3 +422,24 @@ void ImprimirMatrices(int Numero)
     }
     
 }
+
+void MultiplicarMatrices()
+{
+    int i, j, k;
+    
+    for (i = 0; i < 3; i++) // Filas de A
+    {
+        for (j = 0; j < 3; j++) // Columnas de B
+        {
+            MatrizC[i][j] = 0; 
+            for (k = 0; k < 3; k++) // Columnas de A y Filas de B
+            {
+                MatrizC[i][j] += MatrizA[i][k] * MatrizB[k][j];
+            }
+            
+        }
+    }
+    ImprimirMatrices(0);
+
+}
+
