@@ -24,6 +24,8 @@ void MenuPrincipal();
 //Validar Input
 bool ValidarInputMain(char);
 
+//Suma y Resta de Matrices 
+void Suma(int);
 
 
 //declaracion variables
@@ -126,6 +128,7 @@ void MenuPrincipal()
                 printf("\n");
             }
             Esperar();
+            break;
 
             case '2':
             //Inicializar Matriz B
@@ -143,6 +146,21 @@ void MenuPrincipal()
                 printf("\n");
             }
             Esperar();
+            break;
+
+            case '3':
+            //Suma matrices
+            LimpiarPantalla();            
+            Suma(1); //Neutro Multiplicativo
+            Esperar();
+            break;
+
+            case '4':
+            //Resta matrices
+            LimpiarPantalla();            
+            Suma(-1); //Neutro Multiplicativo (inverso)
+            Esperar();
+            break;
 
         }
             
@@ -151,7 +169,18 @@ void MenuPrincipal()
     } while (input != '6');
     
 }
+void Suma(int Numero)
+{
+    for(i = 0; i <= 2; ++i)
+    {
+        for (j =0; j <= 2; ++j)
+        {
+            MatrizC[i][j] = MatrizA[i][j] + (Numero * MatrizB[i][j]);
+        }
+     
+    } 
 
+}
 bool ValidarInputMain(char input)
 {
     if (input == '1' || input == '2' || input == '3' || input == '4' || input == '5' || input == '6')
