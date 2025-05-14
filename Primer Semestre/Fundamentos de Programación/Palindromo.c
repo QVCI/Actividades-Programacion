@@ -25,6 +25,9 @@ void Palindromo();
 //Bubble Sort
 void BubbleSort();
 
+//Generar números Aleatorios (minimo, maximo)
+int NumerosAleatorios(int, int);
+
 
 //declaracion variables
 int bandera = 0;
@@ -37,6 +40,7 @@ char opcmenu[20];
 
 int main()
 {
+    srand(time(NULL));
     do
     {
         LimpiarPantalla();
@@ -194,6 +198,66 @@ void Palindromo()
 }
 void BubbleSort()
 {
+    LimpiarPantalla();
 
+    int arreglo[8];
+    int i, j, k;
+    int contador = 1;
+
+    printf("Bienvenido a la funcion Bubble Sort\n");
+    printf("El arreglo original es:\n");
+    printf("[ ");
+    for (i = 0; i < 8; i++)
+    {
+        arreglo[i] = NumerosAleatorios(1, 20);
+        if (i != 7)
+        {
+            printf("[%d],", arreglo[i]);
+        }
+        else
+        {
+            printf("[%d]", arreglo[i]);
+        }
+    }
+    printf(" ]\n");
+
+    // Bubble Sort
+    for (i = 0; i < 8 - 1; i++)
+    {
+        for (j = 0; j < 8 - i - 1; j++)
+        {
+            if (arreglo[j] > arreglo[j + 1])
+            {
+                int temp = arreglo[j];
+                arreglo[j] = arreglo[j + 1];
+                arreglo[j + 1] = temp;
+            }
+        }
+
+        // Mostrar arreglo después de cada paso
+        printf("Paso %d:\n", contador++);
+        printf("[ ");
+        for (k = 0; k < 8; k++)
+        {
+            if (k != 7)
+            {
+                printf("[%d],", arreglo[k]);
+            }
+            else
+            {
+                printf("[%d]", arreglo[k]);
+            }
+        }
+        printf(" ]\n");
+    }
+
+    Esperar();
+}
+
+
+
+int NumerosAleatorios (int minimo, int maximo)
+{
+	return rand()%((maximo+1)-minimo)+minimo;
 }
     
