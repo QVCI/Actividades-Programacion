@@ -19,28 +19,45 @@ int Validacion(char[]);
 //Esperar
 void Esperar();
 
+//Palindromo
+void Palindromo();
+
+//Bubble Sort
+void BubbleSort();
+
 
 //declaracion variables
 int bandera = 0;
-int i, codigo_error = 8;
-char texto[100];
+int i, codigo = 8;
+
 char opcmenu[20];
 
 
 
 
-//Inicio Script
 int main()
 {
     do
     {
         LimpiarPantalla();
-        MenuPrincipal(codigo_error);
+        MenuPrincipal(codigo);
         scanf("%s", &opcmenu);
-        codigo_error = Validacion(opcmenu);
-        
-    } while (true);
-    
+        codigo = Validacion(opcmenu);
+        switch (codigo)
+        {
+            case 1:
+                Palindromo();
+                break;
+            case 2:
+                BubbleSort();
+                break;
+            default:
+                break;        
+        }
+    } 
+    while (codigo != 0);
+    printf("Gracias por usar el programa\n");
+    printf("Hasta luego\n");
     
 
 	return 0;
@@ -59,16 +76,13 @@ int Validacion(char opcmenu[20])
             return 4; //código de error para no numerico;
         }       
     }
-    for(i =0; i < strlen(opcmenu); i++)
+    
+     if(opcmenu[0] != '0' && opcmenu[0] != '1' && opcmenu[0] != '2')
     {
-        if(opcmenu[i] != '0' || opcmenu[i] != '1' || opcmenu[i] != '2')
-        {
-            
-            return 5; //codigo de error para menu incorrecto
-        }
-        else
-        {
-            switch (opcmenu[i])
+        
+        return 5; //codigo de error para menu incorrecto
+    }
+    switch (opcmenu[0])
             {
                 case '0':
                     return 0; //Opción para salir
@@ -80,8 +94,6 @@ int Validacion(char opcmenu[20])
                     return 2; //Opcion bubble sort
                     break;
             }
-        }    
-    }
 
 }
 void MenuPrincipal(int codigo_error)
@@ -116,5 +128,72 @@ void Esperar()
     int cerrar;
     printf("Presione cualquier numero para continuar\n");
     scanf("%d", &cerrar);
+}
+void Palindromo()
+{
+    LimpiarPantalla();
+    
+    char texto[100];
+    char textominusculas[100];
+    int vocales = 0, espacios = 0, i, j = 0;
+    bool palindromo = true;
+    int longitud;
+
+    printf("Bienvenido a la funcion palindromo\n");
+
+    // Limpiar el búfer
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+
+    printf("Ingrese un texto:\n");
+    fgets(texto, 100, stdin);
+
+    // Convertir a minúsculas y eliminar '\n' y espacios
+    for (i = 0; texto[i] != '\0'; i++)
+    {
+        if (texto[i] != '\n' && texto[i] != ' ')
+        {
+            textominusculas[j] = tolower(texto[i]);
+            j++;
+        }
+    }
+    textominusculas[j] = '\0';
+    longitud = j;
+
+    for(i = 0; i < longitud; i++)
+    {
+        if(textominusculas[i] != textominusculas[longitud - i - 1])
+        {
+            palindromo = false;
+        }
+    }
+
+   
+    for (i = 0; texto[i] != '\0'; i++)
+    {
+        if (texto[i] == ' ')
+            espacios++;
+
+        char ch = tolower(texto[i]);
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+            vocales++;
+    }
+
+  
+
+    if(palindromo)
+        printf("El texto es un palindromo\n", texto);
+    else
+        printf("El texto no es un palindromo\n", texto);
+
+    printf("El texto tiene %d vocales\n", vocales);
+    printf("El texto tiene %d espacios\n", espacios);
+  
+
+    Esperar();
+}
+void BubbleSort()
+{
+
 }
     
